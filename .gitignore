@@ -214,3 +214,13 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+Temp/__EditModeScene
+
+.DS_Store
+Library
+Temp
+*.csproj
+*.pidb
+*.unityproj
+*.sln
+*.userprefs
