@@ -21,7 +21,22 @@ public class Tetrimino : MonoBehaviour
 	private float[] allowedRotations;
 	private int currentRotationIndex = 0;
 
-	p
+    public new bool enabled
+    {
+        get
+        {
+            return base.enabled;  
+        }
+        set
+        {
+            base.enabled = value;
+            SpriteRenderer[] renderers = this.GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer renderer in renderers)
+            {
+                renderer.enabled = value;
+            }
+        }
+    }
 	void Awake ()
 	{
 		PrecalculateRotations ();
@@ -79,10 +94,6 @@ public class Tetrimino : MonoBehaviour
 
 			// TODO: make some noise
 		}
-	}
-
-	void MoveRight ()
-	{
 	}
 
 	void MoveDown (float effectiveSpeed)
