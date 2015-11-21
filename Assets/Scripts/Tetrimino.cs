@@ -21,6 +21,12 @@ public class Tetrimino : MonoBehaviour
 	private float[] allowedRotations;
 	private int currentRotationIndex = 0;
 
+    /// <summary>
+    ///  We encapsulate the actual tetrimino blocks in a rotation container object to decouple the rotation of the tetrimino from the movement
+    /// This simplifies move logic because the transform for the root GameObject is always correctly oriented
+    /// </summary>
+    public GameObject rotationContainer;
+
     public new bool enabled
     {
         get
@@ -72,7 +78,7 @@ public class Tetrimino : MonoBehaviour
 		Debug.Log (string.Format ("Rotating. Total rotations {0}. Current rotation {1}", allowedRotations, currentRotationIndex));
 		if (allowedRotations != null) {
 			int rotationIndex = (currentRotationIndex + 1) % allowedRotations.Length;
-			transform.rotation = Quaternion.Euler (new Vector3 (0.0f, 0.0f, allowedRotations [rotationIndex]));
+			rotationContainer.transform.rotation = Quaternion.Euler (new Vector3 (0.0f, 0.0f, allowedRotations [rotationIndex]));
 			currentRotationIndex = rotationIndex;			                       
 		}
 	}
